@@ -7,10 +7,17 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $produtos = Produto::all();
-        return view('produtos.index', compact('produtos'));
+        // Obtém o termo de pesquisa, se existir
+        $search = $request->input('search');
+
+        // Filtra os produtos com base no termo de pesquisa
+        $produtos = $search
+            ? Produto::where('nome', 'LIKE', "%{$search}%")->get()
+            : Produto::all();
+
+        return view('produtos.index', compact('produtos', 'search'));
     }
 
     public function create()
@@ -20,6 +27,14 @@ class ProdutoController extends Controller
 
     public function store(Request $request)
     {
+        // Validação dos dados antes de criar o produto
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'preco' => 'required|numeric',
+            'quantidade' => 'required|integer',
+            'marca' => 'required|string|max:255',
+        ]);
+
         Produto::create($request->all());
         return redirect()->route('produtos.index');
     }
@@ -36,6 +51,14 @@ class ProdutoController extends Controller
 
     public function update(Request $request, Produto $produto)
     {
+        // Validação dos dados antes de atualizar o produto
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'preco' => 'required|numeric',
+            'quantidade' => 'required|integer',
+            'marca' => 'required|string|max:255',
+        ]);
+
         $produto->update($request->all());
         return redirect()->route('produtos.index');
     }
