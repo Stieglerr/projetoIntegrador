@@ -69,7 +69,7 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 0.9em;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.4s ease;
             text-decoration: none;
         }
 
