@@ -9,7 +9,8 @@ use App\Http\Controllers\VendasController;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
+
 
 Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
 Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
@@ -18,3 +19,4 @@ Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.ind
 Route::resource('produtos', ProdutoController::class);
 Route::resource('vendas', VendasController::class);
 
+Route::delete('/produtos/{id}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
