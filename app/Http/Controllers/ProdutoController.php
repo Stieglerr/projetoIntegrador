@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use App\Models\Venda;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -67,5 +68,26 @@ class ProdutoController extends Controller
     {
         $produto->delete();
         return redirect()->route('produtos.index');
+    }
+
+    public function addToVenda(Request $request, $vendaId)
+    {
+        // Recupera a venda existente
+        $venda = Venda::findOrFail($vendaId);
+
+        // Validação dos produtos selecionados
+        $request->validate([
+            'produto_ids' => 'required|array',
+            'produto_ids.*' => 'exists:produtos,id', // Valida se o produto existe
+        ]);
+
+        // Adiciona os produtos à venda
+        foreach ($request->produto_ids as $produtoId) {
+            $produto = Produto::find($produtoId);
+            // Associar o produto à venda (supondo uma tabela pivot produto_venda)
+            $venda->produtos()->attach($produto);
+        }
+
+        return redirect()->route('vendas.show', $venda->id);
     }
 }

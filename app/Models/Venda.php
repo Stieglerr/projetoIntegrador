@@ -10,16 +10,15 @@ class Venda extends Model
     use HasFactory;
 
     protected $table = 'vendas';
-
-    protected $fillable = ['cliente_id', 'produto_id'];
+    protected $fillable = ['cliente_id'];
 
     public function cliente()
     {
         return $this->belongsTo(Cliente::class);
     }
 
-    public function produto()
+    public function produtos()
     {
-        return $this->belongsTo(Produto::class);
+        return $this->belongsToMany(Produto::class, 'produto_venda', 'venda_id', 'produto_id');
     }
 }

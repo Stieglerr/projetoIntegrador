@@ -11,7 +11,7 @@ class VendasController extends Controller
 {
     public function index()
     {
-        $vendas = Venda::with(['cliente', 'produto'])->get();
+        $vendas = Venda::with(['cliente', 'produtos'])->get();
         return view('vendas.index', compact('vendas'));
     }
 
@@ -24,10 +24,17 @@ class VendasController extends Controller
 
     public function store(Request $request)
     {
-        Venda::create($request->validate([
+        $request->validate([
             'cliente_id' => 'required|exists:cliente,id',
-            'produto_id' => 'required|exists:produto,id',
-        ]));
+            'produto_id' => 'required|array',
+            'produto_id.*' => 'exists:produto,id',
+        ]);
+
+        // Cria a venda apenas com o cliente_id
+        $venda = Venda::create(['cliente_id' => $request->cliente_id]);
+
+        // Associa os produtos selecionados à venda na tabela produto_venda
+        $venda->produtos()->attach($request->produto_id);
 
         return redirect()->route('vendas.index')->with('success', 'Venda cadastrada com sucesso!');
     }

@@ -18,5 +18,6 @@ Route::resource('clientes', ClienteController::class);
 Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
 Route::resource('produtos', ProdutoController::class);
 Route::resource('vendas', VendasController::class);
-
 Route::delete('/produtos/{id}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
+Route::post('/vendas/{vendaId}/produtos', [ProdutoController::class, 'addToVenda'])->name('produtos.addToVenda');
+
