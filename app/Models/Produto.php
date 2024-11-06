@@ -10,11 +10,10 @@ class Produto extends Model
     use HasFactory;
 
     protected $table = 'produto';
-
     protected $fillable = ['nome', 'preco', 'quantidade', 'marca'];
 
     public function vendas()
     {
-        return $this->hasMany(Venda::class);
+        return $this->belongsToMany(Venda::class, 'produto_venda', 'produto_id', 'venda_id');
     }
 }

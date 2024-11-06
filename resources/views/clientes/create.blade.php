@@ -4,42 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Cliente</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> <!-- Link para o Bootstrap -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #003366;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 800px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 51, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            text-align: left;
+            font-size: 1.1em;
+            color: #003366;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #003366;
+            border-radius: 4px;
+            font-size: 1em;
+            width: 100%;
+        }
+
+        button[type="submit"] {
+            background-color: #003366;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #005599;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .btn-return,
+        .btn-back-products {
+            display: inline-block;
+            background-color: #003366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-return:hover,
+        .btn-back-products:hover {
+            background-color: #005599;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5">Cadastrar Cliente</h1>
+        <div class="btn-container">
+            <a href="{{ route('home') }}" class="btn-return">Voltar para Home</a>
+            <a href="{{ route('clientes.index') }}" class="btn-back-products">Voltar para Clientes</a>
+        </div>
+
+        <h1>Cadastrar Cliente</h1>
 
         <form action="{{ route('clientes.store') }}" method="POST">
             @csrf
-            
-            <div class="form-group">
-                <label for="nome">Nome</label>
-                <input type="text" name="nome" class="form-control" required>
-            </div>
 
-            <div class="form-group">
-                <label for="cpf">CPF</label>
-                <input type="text" name="cpf" class="form-control" required>
-            </div>
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" required>
 
-            <div class="form-group">
-                <label for="telefone">Telefone</label>
-                <input type="text" name="telefone" class="form-control" required>
-            </div>
+            <label for="cpf">CPF:</label>
+            <input type="text" name="cpf" required>
 
-            <div class="form-group">
-                <label for="endereco">Endereço</label>
-                <input type="text" name="endereco" class="form-control" required>
-            </div>
+            <label for="telefone">Telefone:</label>
+            <input type="text" name="telefone" required>
 
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <label for="endereco">Endereço:</label>
+            <input type="text" name="endereco" required>
+
+            <button type="submit">Cadastrar</button>
         </form>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-    
