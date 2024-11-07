@@ -14,9 +14,14 @@ class ProdutoController extends Controller
         $search = $request->input('search');
 
         // Filtra os produtos com base no termo de pesquisa
-        $produtos = $search
-            ? Produto::where('nome', 'LIKE', "%{$search}%")->get()
-            : Produto::all();
+        if ($search) {
+            $produtos = Produto::where('nome', 'LIKE', "%{$search}%")
+                ->orWhere('id', 'LIKE', "%{$search}%")  // Busca pelo ID
+                ->orWhere('marca', 'LIKE', "%{$search}%")  // Busca pela Marca
+                ->get();
+        } else {
+            $produtos = Produto::all();
+        }
 
         return view('produtos.index', compact('produtos', 'search'));
     }
