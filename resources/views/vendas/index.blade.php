@@ -75,6 +75,13 @@
             display: inline-block;
             margin-bottom: 20px;
         }
+
+        .total {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: right; /* Alinha a soma à direita */
+        }
     </style>
 </head>
 <body>
@@ -86,23 +93,28 @@
         <!-- Cabeçalho das vendas -->
         <div class="header">
             <span style="flex: 2;">Cliente</span>
-            <span style="flex: 2;">Produtos</span>
             <span style="flex: 1;">Data da Venda</span>
+            <span style="flex: 1;">Valor Total</span>
+            <span style="flex: 1;">Ações</span>
         </div>
 
         <ul>
             @foreach ($vendas as $venda)
                 <li>
                     <span style="flex: 2;">{{ $venda->cliente->nome }}</span>
-                    <span style="flex: 2;">
-                        @foreach ($venda->produtos as $produto)
-                            <p>{{ $produto->nome }}</p>
-                        @endforeach
-                    </span>
                     <span style="flex: 1;">{{ $venda->created_at->format('d/m/Y H:i') }}</span>
+                    <span style="flex: 1;">R$ {{ number_format($venda->valor_total, 2, ',', '.') }}</span>
+                    <span style="flex: 1;">
+                        <a href="{{ route('venda.show', $venda->id) }}" class="btn">Ver Detalhes</a>
+                    </span>
                 </li>
             @endforeach
         </ul>
+
+        <!-- Exibir a soma total das vendas -->
+        <div class="total">
+            Total de Vendas: R$ {{ number_format($somaTotal, 2, ',', '.') }}
+        </div>
 
         <a href="{{ route('vendas.create') }}" class="btn">Adicionar Nova Venda</a>
     </div>

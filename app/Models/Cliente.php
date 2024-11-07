@@ -9,12 +9,12 @@ class Cliente extends Model
 {
     use HasFactory;
 
-    protected $table = 'cliente';
+    protected $table = 'cliente'; // Nome correto da tabela
 
-    protected $fillable = ['nome', 'cpf', 'telefone', 'endereco'];
+    protected $fillable = ['nome', 'cpf', 'telefone', 'email', 'endereco'];
 
     public function vendas()
     {
-        return $this->hasMany(Venda::class);
+        return $this->hasMany(Venda::class);    
     }
 }

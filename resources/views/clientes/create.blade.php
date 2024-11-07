@@ -44,7 +44,8 @@
             color: #003366;
         }
 
-        input[type="text"] {
+        input[type="text"],
+        input[type="email"] {
             padding: 10px;
             border: 1px solid #003366;
             border-radius: 4px;
@@ -113,6 +114,9 @@
 
             <label for="endereco">Endereço:</label>
             <input type="text" name="endereco" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" required>
 
             <button type="submit">Cadastrar</button>
         </form>

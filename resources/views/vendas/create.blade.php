@@ -46,6 +46,7 @@
 
         select,
         input[type="text"],
+        input[type="number"],
         button[type="submit"] {
             padding: 10px;
             border: 1px solid #003366;
@@ -55,7 +56,8 @@
         }
 
         input[type="text"]:focus,
-        select:focus {
+        select:focus,
+        input[type="number"]:focus {
             border-color: #005599;
         }
 
@@ -110,10 +112,17 @@
             padding: 10px;
             border: 1px solid #cfcfcf;
             border-radius: 4px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
 
         .search-product {
-            margin-bottom: 10px; /* Adiciona espaçamento entre "Buscar Produto" e "Selecione um produto" */
+            margin-bottom: 10px;
+        }
+
+        .product-group input[type="number"] {
+            width: 100px;
         }
     </style>
 </head>
@@ -141,9 +150,10 @@
                     <select name="produto_id[]" class="produto-select" required>
                         <option value="">Selecione um produto</option>
                         @foreach ($produtos as $produto)
-                            <option value="{{ $produto->id }}">{{ $produto->nome }}</option>
+                            <option value="{{ $produto->id }}" data-preco="{{ $produto->preco }}">{{ $produto->nome }}</option>
                         @endforeach
                     </select>
+                    <input type="number" name="quantidade[]" min="1" value="1" required>
                 </div>
             </div>
             <button type="button" class="btn-add-product" onclick="addProductField()">Adicionar Produto</button>
@@ -177,15 +187,17 @@
                 <select name="produto_id[]" class="produto-select" required>
                     <option value="">Selecione um produto</option>
                     @foreach ($produtos as $produto)
-                        <option value="{{ $produto->id }}">{{ $produto->nome }}</option>
+                        <option value="{{ $produto->id }}" data-preco="{{ $produto->preco }}">{{ $produto->nome }}</option>
                     @endforeach
                 </select>
+                <input type="number" name="quantidade[]" min="1" value="1" required>
             `;
             
             container.appendChild(newProductGroup);
 
             const searchProductInput = newProductGroup.querySelector('.search-product');
             const produtoSelect = newProductGroup.querySelector('.produto-select');
+            const quantidadeInput = newProductGroup.querySelector('input[type="number"]');
 
             searchProductInput.addEventListener('input', () => {
                 const searchValue = searchProductInput.value.toLowerCase();
@@ -193,6 +205,12 @@
                     const optionText = option.textContent.toLowerCase();
                     option.style.display = optionText.includes(searchValue) || option.value === "" ? '' : 'none';
                 });
+            });
+
+            produtoSelect.addEventListener('change', () => {
+                const selectedOption = produtoSelect.options[produtoSelect.selectedIndex];
+                const preco = selectedOption.getAttribute('data-preco');
+                // Adicionar lógica para calcular o valor total da venda
             });
         }
     </script>

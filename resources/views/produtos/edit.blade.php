@@ -25,6 +25,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 16px rgba(0, 0, 51, 0.2);
             text-align: center;
+            position: relative;
         }
 
         h1 {
@@ -77,9 +78,11 @@
         .btn-container {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
-            width: 100%;
-            max-width: 600px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            width: calc(100% - 40px);
         }
 
         .btn-return, .btn-produtos {
@@ -94,20 +97,35 @@
         .btn-return:hover, .btn-produtos:hover {
             background-color: #005599;
         }
+
+        .btn-submit-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .btn-submit-container .btn {
+            width: auto;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Editar Produto</h1>
 
+        <!-- Container dos botões de navegação, com posição absoluta -->
         <div class="btn-container">
             <a href="{{ route('home') }}" class="btn-return">Voltar para Home</a>
             <a href="{{ route('produtos.index') }}" class="btn-produtos">Ver Produtos</a>
         </div>
 
+        <!-- Formulário de edição do produto -->
         <form action="{{ route('produtos.update', $produto->id) }}" method="POST">
             @csrf
             @method('PUT')
+
             <label for="nome">Nome:</label>
             <input type="text" name="nome" value="{{ $produto->nome }}" required>
             
@@ -120,7 +138,10 @@
             <label for="marca">Marca:</label>
             <input type="text" name="marca" value="{{ $produto->marca }}" required>
 
-            <button type="submit" class="btn">Atualizar</button>
+            <!-- Botão de atualização centralizado -->
+            <div class="btn-submit-container">
+                <button type="submit" class="btn">Atualizar Produto</button>
+            </div>
         </form>
     </div>
 </body>
