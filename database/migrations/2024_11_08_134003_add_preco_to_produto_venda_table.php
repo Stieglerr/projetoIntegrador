@@ -10,17 +10,19 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-{
-    Schema::table('produto_venda', function (Blueprint $table) {
-        $table->decimal('preco', 8, 2); // Adiciona a coluna preco
-    });
-}
+    {
+        Schema::table('produto_venda', function (Blueprint $table) {
+            $table->decimal('preco', 8, 2)->nullable(); // Adiciona a coluna preco como opcional
+        });
+    }
 
-public function down()
-{
-    Schema::table('produto_venda', function (Blueprint $table) {
-        $table->dropColumn('preco');
-    });
-}
-
+    /**
+     * Reverse the migrations.
+     */
+    public function down()
+    {
+        Schema::table('produto_venda', function (Blueprint $table) {
+            $table->dropColumn('preco');
+        });
+    }
 };

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Cliente</title>
     <style>
-        /* Estilos semelhantes ao index de produtos */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f8ff;
@@ -71,6 +70,23 @@
             display: inline-block;
         }
     </style>
+    <script>
+        function formatCPF(cpf) {
+            cpf.value = cpf.value
+                .replace(/\D/g, '')
+                .replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        }
+
+        function formatPhone(phone) {
+            phone.value = phone.value
+                .replace(/\D/g, '')
+                .replace(/(\d{2})(\d)/, '($1) $2')
+                .replace(/(\d{5})(\d)/, '$1-$2')
+                .replace(/(-\d{4})\d+?$/, '$1');
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -88,7 +104,10 @@
             <input type="email" name="email" value="{{ $cliente->email }}" required>
 
             <label for="cpf">CPF:</label>
-            <input type="text" name="cpf" value="{{ $cliente->cpf }}" required>
+            <input type="text" name="cpf" value="{{ $cliente->cpf }}" oninput="formatCPF(this)" required>
+
+            <label for="telefone">Telefone:</label>
+            <input type="text" name="telefone" value="{{ $cliente->telefone }}" oninput="formatPhone(this)" required>
 
             <label for="numero">Número:</label>
             <input type="number" name="numero" value="{{ $cliente->numero }}" required>
@@ -96,8 +115,6 @@
             <label for="endereco">Endereço:</label>
             <input type="text" name="endereco" value="{{ $cliente->endereco }}" required>
 
-            <!-- Outros campos, se houver -->
-            
             <button type="submit" class="btn">Atualizar</button>
         </form>
     </div>
