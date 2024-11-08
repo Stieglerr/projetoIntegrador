@@ -12,8 +12,10 @@ class Produto extends Model
     protected $table = 'produto';
     protected $fillable = ['nome', 'preco', 'quantidade', 'marca'];
 
-    public function vendas()
-    {
-        return $this->belongsToMany(Venda::class, 'produto_venda', 'produto_id', 'venda_id');
-    }
+        public function vendas()
+        {
+            return $this->belongsToMany(Venda::class, 'produto_venda', 'produto_id', 'venda_id')
+                        ->withPivot('quantidade', 'preco'); // Incluindo os campos da tabela pivô
+        }
+            
 }

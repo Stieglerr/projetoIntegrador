@@ -7,15 +7,15 @@ use Illuminate\Support\Facades\Schema;
 class CreateProdutoVendaTable extends Migration
 {
     public function up()
-{
-    Schema::create('produto_venda', function (Blueprint $table) {
-        $table->id();
-        $table->foreignId('produto_id')->constrained('produto')->onDelete('cascade');
-        $table->foreignId('venda_id')->constrained('vendas')->onDelete('cascade');
-        $table->timestamps();
-    });
-}
-
+    {
+        Schema::create('produto_venda', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('produto_id')->constrained('produto')->onDelete('cascade');
+            $table->foreignId('venda_id')->constrained('vendas')->onDelete('cascade');
+            $table->integer('quantidade'); // Adiciona o campo para armazenar a quantidade
+            $table->timestamps();
+        });
+    }
 
     public function down()
     {

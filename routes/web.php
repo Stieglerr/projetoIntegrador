@@ -21,4 +21,4 @@ Route::resource('produtos', ProdutoController::class);
 // Rotas de vendas
 Route::resource('vendas', VendasController::class);
 Route::post('/vendas/{vendaId}/produtos', [ProdutoController::class, 'addToVenda'])->name('produtos.addToVenda');
-Route::get('/venda/{id}', [VendasController::class, 'show'])->name('venda.show');
+Route::get('vendas/{id}', [VendasController::class, 'show'])->name('vendas.show');

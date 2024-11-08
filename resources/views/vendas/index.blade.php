@@ -103,9 +103,11 @@
                 <li>
                     <span style="flex: 2;">{{ $venda->cliente->nome }}</span>
                     <span style="flex: 1;">{{ $venda->created_at->format('d/m/Y H:i') }}</span>
-                    <span style="flex: 1;">R$ {{ number_format($venda->valor_total, 2, ',', '.') }}</span>
                     <span style="flex: 1;">
-                        <a href="{{ route('venda.show', $venda->id) }}" class="btn">Ver Detalhes</a>
+                        R$ {{ number_format($venda->valor_total, 2, ',', '.') }}
+                    </span>
+                    <span style="flex: 1;">
+                        <a href="{{ route('vendas.show', $venda->id) }}" class="btn">Ver Detalhes</a>
                     </span>
                 </li>
             @endforeach
@@ -113,7 +115,7 @@
 
         <!-- Exibir a soma total das vendas -->
         <div class="total">
-            Total de Vendas: R$ {{ number_format($somaTotal, 2, ',', '.') }}
+            Total de Vendas: R$ {{ number_format($vendas->sum('valor_total'), 2, ',', '.') }}
         </div>
 
         <a href="{{ route('vendas.create') }}" class="btn">Adicionar Nova Venda</a>
