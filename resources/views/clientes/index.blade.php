@@ -103,6 +103,7 @@
             <span style="flex: 1;">CPF</span>
             <span style="flex: 1;">Telefone</span>
             <span style="flex: 2;">Endereço</span>
+            <span style="flex: 2;">Email</span>  <!-- Nova coluna de Email -->
             <span style="flex: 1;">Ações</span>
         </div>
 
@@ -113,7 +114,7 @@
                     <span style="flex: 1;">{{ $cliente->cpf }}</span>
                     <span style="flex: 1;">{{ $cliente->telefone }}</span>
                     <span style="flex: 2;">{{ $cliente->endereco }}</span>
-
+                    <span style="flex: 2;">{{ $cliente->email }}</span>  <!-- Exibindo o Email -->
                     <div style="flex: 1; display: flex; justify-content: space-around;">
                         <!-- Botão Editar -->
                         <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn">Editar</a>

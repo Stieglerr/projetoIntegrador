@@ -119,22 +119,24 @@
             </form>
         </div>
 
-
         <!-- Cabeçalho dos produtos -->
         <div class="header">
-            <span style="flex: 2;">Nome</span>
             <span style="flex: 1;">ID</span>
+            <span style="flex: 2;">Nome</span>
             <span style="flex: 1;">Preço</span>
+            <span style="flex: 1;">Marca</span>
+            <span style="flex: 1;">Quantidade</span> <!-- Adicionado para exibir quantidade -->
             <span style="flex: 1;">Ações</span>
         </div>
 
         <ul>
             @foreach ($produtos as $produto)
                 <li>
+                    <span style="flex: 1;">{{ $produto->id }}</span> <!-- Exibindo ID -->
                     <span style="flex: 2;">{{ $produto->nome }}</span>
-                    <span style="flex: 1;">{{ $produto->id }}</span>
                     <span style="flex: 1;">{{ $produto->preco }}</span>
-
+                    <span style="flex: 1;">{{ $produto->marca }}</span>
+                    <span style="flex: 1;">{{ $produto->quantidade }}</span> <!-- Exibindo Quantidade -->
                     <div style="flex: 1; display: flex; justify-content: space-around;">
                         <!-- Botão Editar -->
                         <a href="{{ route('produtos.edit', $produto->id) }}" class="btn">Editar</a>

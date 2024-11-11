@@ -44,7 +44,8 @@
             color: #003366;
         }
 
-        input[type="text"] {
+        input[type="text"],
+        input[type="email"] {
             padding: 10px;
             border: 1px solid #003366;
             border-radius: 4px;
@@ -89,6 +90,23 @@
             background-color: #005599;
         }
     </style>
+    <script>
+        function formatCPF(cpf) {
+            cpf.value = cpf.value
+                .replace(/\D/g, '') // Remove tudo que não é dígito
+                .replace(/(\d{3})(\d)/, '$1.$2') // Adiciona ponto após os três primeiros dígitos
+                .replace(/(\d{3})(\d)/, '$1.$2') // Adiciona ponto após os próximos três dígitos
+                .replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Adiciona hífen antes dos dois últimos dígitos
+        }
+
+        function formatPhone(phone) {
+            phone.value = phone.value
+                .replace(/\D/g, '') // Remove tudo que não é dígito
+                .replace(/(\d{2})(\d)/, '($1) $2') // Adiciona parênteses nos dois primeiros dígitos
+                .replace(/(\d{5})(\d)/, '$1-$2') // Adiciona hífen após os cinco primeiros dígitos
+                .replace(/(-\d{4})\d+?$/, '$1'); // Limita para quatro dígitos após o hífen
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -106,13 +124,16 @@
             <input type="text" name="nome" required>
 
             <label for="cpf">CPF:</label>
-            <input type="text" name="cpf" required>
+            <input type="text" name="cpf" oninput="formatCPF(this)" required>
 
             <label for="telefone">Telefone:</label>
-            <input type="text" name="telefone" required>
+            <input type="text" name="telefone" oninput="formatPhone(this)" required>
 
             <label for="endereco">Endereço:</label>
             <input type="text" name="endereco" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" required>
 
             <button type="submit">Cadastrar</button>
         </form>

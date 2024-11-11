@@ -17,8 +17,11 @@ class Venda extends Model
         return $this->belongsTo(Cliente::class);
     }
 
-    public function produtos()
-    {
-        return $this->belongsToMany(Produto::class, 'produto_venda', 'venda_id', 'produto_id');
-    }
+    
+        public function produtos()
+        {
+            return $this->belongsToMany(Produto::class, 'produto_venda', 'venda_id', 'produto_id')
+                ->withPivot('quantidade', ); // Inclui os campos 'quantidade' e 'preco' da tabela pivô
+        }
+    
 }
