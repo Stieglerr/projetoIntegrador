@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\VendasController;
+use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', function () {
     return view('home');
@@ -22,3 +23,13 @@ Route::resource('produtos', ProdutoController::class);
 Route::resource('vendas', VendasController::class);
 Route::post('/vendas/{vendaId}/produtos', [ProdutoController::class, 'addToVenda'])->name('produtos.addToVenda');
 Route::get('vendas/{id}', [VendasController::class, 'show'])->name('vendas.show');
+
+
+// Exibe o formulário de login
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login.form');
+
+// Processa o login
+Route::post('login', [LoginController::class, 'login'])->name('login');
+
+// Processa o logout
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');

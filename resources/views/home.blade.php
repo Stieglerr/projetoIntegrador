@@ -32,7 +32,8 @@
         <p>Escolha uma das opções abaixo para gerenciar:</p>
         <a href="{{ route('produtos.index') }}" class="btn btn-primary">Produtos</a>
         <a href="{{ route('clientes.index') }}" class="btn btn-success">Clientes</a>
-        <a href="{{ route('vendas.index') }}" class="btn btn-info">Vendas</a> <!-- Botão para acessar vendas -->
+        <a href="{{ route('vendas.index') }}" class="btn btn-info">Vendas</a>
+        <a href="{{ route('login') }}" class="btn btn-secondary">Login</a> <!-- Botão de Login -->
     </div>
 </body>
 </html>
