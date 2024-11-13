@@ -10,14 +10,12 @@ class ProdutoController extends Controller
 {
     public function index(Request $request)
     {
-        // Obtém o termo de pesquisa, se existir
         $search = $request->input('search');
 
-        // Filtra os produtos com base no termo de pesquisa
         if ($search) {
             $produtos = Produto::where('nome', 'LIKE', "%{$search}%")
-                ->orWhere('id', 'LIKE', "%{$search}%")  // Busca pelo ID
-                ->orWhere('marca', 'LIKE', "%{$search}%")  // Busca pela Marca
+                ->orWhere('id', 'LIKE', "%{$search}%") 
+                ->orWhere('marca', 'LIKE', "%{$search}%")  
                 ->get();
         } else {
             $produtos = Produto::all();
@@ -33,7 +31,6 @@ class ProdutoController extends Controller
 
     public function store(Request $request)
     {
-        // Validação dos dados antes de criar o produto
         $request->validate([
             'nome' => 'required|string|max:255',
             'preco' => 'required|numeric',
@@ -57,7 +54,6 @@ class ProdutoController extends Controller
 
     public function update(Request $request, Produto $produto)
     {
-        // Validação dos dados antes de atualizar o produto
         $request->validate([
             'nome' => 'required|string|max:255',
             'preco' => 'required|numeric',
@@ -77,19 +73,15 @@ class ProdutoController extends Controller
 
     public function addToVenda(Request $request, $vendaId)
     {
-        // Recupera a venda existente
         $venda = Venda::findOrFail($vendaId);
 
-        // Validação dos produtos selecionados
         $request->validate([
             'produto_ids' => 'required|array',
-            'produto_ids.*' => 'exists:produtos,id', // Valida se o produto existe
+            'produto_ids.*' => 'exists:produtos,id',
         ]);
 
-        // Adiciona os produtos à venda
         foreach ($request->produto_ids as $produtoId) {
             $produto = Produto::find($produtoId);
-            // Associar o produto à venda (supondo uma tabela pivot produto_venda)
             $venda->produtos()->attach($produto);
         }
 

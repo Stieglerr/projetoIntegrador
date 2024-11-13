@@ -75,7 +75,6 @@
             <p><strong>Cliente:</strong> {{ $venda->cliente->nome }}</p>
             <p><strong>Data da Venda:</strong> {{ $venda->created_at->format('d/m/Y H:i') }}</p>
 
-            <!-- Calcular e exibir o valor total da venda -->
             <p><strong>Valor Total:</strong> 
                 R$ {{ number_format($venda->produtos->sum(function($produto) {
                     return $produto->preco * $produto->pivot->quantidade;
@@ -86,7 +85,6 @@
             <ul>
                 @foreach ($venda->produtos as $produto)
                     <?php 
-                        // Calcula o preço total por produto (preço * quantidade)
                         $precoTotal = $produto->preco * $produto->pivot->quantidade;
                     ?>
                     <li>

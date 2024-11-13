@@ -12,7 +12,7 @@ class CreateProdutoVendaTable extends Migration
             $table->id();
             $table->foreignId('produto_id')->constrained('produto')->onDelete('cascade');
             $table->foreignId('venda_id')->constrained('vendas')->onDelete('cascade');
-            $table->integer('quantidade'); // Adiciona o campo para armazenar a quantidade
+            $table->integer('quantidade');
             $table->timestamps();
         });
     }

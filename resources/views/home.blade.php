@@ -33,7 +33,7 @@
         <a href="{{ route('produtos.index') }}" class="btn btn-primary">Produtos</a>
         <a href="{{ route('clientes.index') }}" class="btn btn-success">Clientes</a>
         <a href="{{ route('vendas.index') }}" class="btn btn-info">Vendas</a>
-        <a href="{{ route('login') }}" class="btn btn-secondary">Login</a> <!-- Botão de Login -->
+        <a href="{{ route('login') }}" class="btn btn-secondary">Sair</a> 
     </div>
 </body>
 </html>

@@ -9,7 +9,7 @@ class Cliente extends Model
 {
     use HasFactory;
 
-    protected $table = 'cliente'; // Nome correto da tabela
+    protected $table = 'cliente';
 
     protected $fillable = ['nome', 'cpf', 'telefone', 'email', 'endereco'];
 

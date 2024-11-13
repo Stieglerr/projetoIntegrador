@@ -7,7 +7,6 @@ class ProdutoVenda extends Model
 {
     protected $table = 'produto_venda';
 
-    // Definir os campos que podem ser preenchidos
     protected $fillable = ['produto_id', 'venda_id', 'quantidade'];
 
     public function produto()
