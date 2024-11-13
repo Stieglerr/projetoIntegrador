@@ -8,14 +8,14 @@ class AddEmailToClienteTable extends Migration
     public function up()
     {
         Schema::table('cliente', function (Blueprint $table) {
-            $table->string('email')->nullable(); // Adiciona a coluna email
+            $table->string('email')->nullable(); 
         });
     }
 
     public function down()
     {
         Schema::table('cliente', function (Blueprint $table) {
-            $table->dropColumn('email'); // Remove a coluna email se necessário
+            $table->dropColumn('email');
         });
     }
 }

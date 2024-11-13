@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Produto</title>
+    <title>Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -49,8 +49,8 @@
             max-width: 600px;
         }
 
-        input[type="text"],
-        input[type="number"] {
+        input[type="email"],
+        input[type="password"] {
             padding: 10px;
             border: 1px solid #003366;
             border-radius: 4px;
@@ -59,7 +59,7 @@
             max-width: 600px;
         }
 
-        .btn {
+        button {
             background-color: #003366;
             color: white;
             border: none;
@@ -68,33 +68,9 @@
             cursor: pointer;
             font-size: 1em;
             transition: background-color 0.3s ease;
-            text-decoration: none;
         }
 
-        .btn:hover {
-            background-color: #005599;
-        }
-
-        .btn-container {
-            display: flex;
-            justify-content: space-between;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            width: calc(100% - 40px);
-        }
-
-        .btn-return, .btn-produtos {
-            background-color: #003366;
-            color: white;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-return:hover, .btn-produtos:hover {
+        button:hover {
             background-color: #005599;
         }
 
@@ -105,41 +81,43 @@
             margin-top: 30px;
         }
 
-        .btn-submit-container .btn {
+        .btn-submit-container button {
             width: auto;
             margin-top: 10px;
+        }
+
+        .error-messages {
+            color: red;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Editar Produto</h1>
+        <h1>Login</h1>
 
-        <div class="btn-container">
-            <a href="{{ route('home') }}" class="btn-return">Voltar para Home</a>
-            <a href="{{ route('produtos.index') }}" class="btn-produtos">Ver Produtos</a>
-        </div>
-
-        <form action="{{ route('produtos.update', $produto->id) }}" method="POST">
+        <form action="{{ route('login') }}" method="POST">
             @csrf
-            @method('PUT')
+            <label for="email">Email:</label>
+            <input type="email" name="email" required>
 
-            <label for="nome">Nome:</label>
-            <input type="text" name="nome" value="{{ $produto->nome }}" required>
-            
-            <label for="preco">Preço:</label>
-            <input type="number" name="preco" step="0.01" value="{{ $produto->preco }}" required>
-            
-            <label for="quantidade">Quantidade:</label>
-            <input type="number" name="quantidade" value="{{ $produto->quantidade }}" required>
-            
-            <label for="marca">Marca:</label>
-            <input type="text" name="marca" value="{{ $produto->marca }}" required>
+            <label for="password">Senha:</label>
+            <input type="password" name="password" required>
 
             <div class="btn-submit-container">
-                <button type="submit" class="btn">Atualizar Produto</button>
+                <button type="submit">Entrar</button>
             </div>
         </form>
+
+        @if ($errors->any())
+            <div class="error-messages">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
 </body>
 </html>

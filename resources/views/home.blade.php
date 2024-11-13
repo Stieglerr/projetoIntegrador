@@ -28,11 +28,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>Bem-vindo ao Sistema de Autopeças</h1>
+        <h1>Bem-vindo ao Sistema de Autopeçass</h1>
         <p>Escolha uma das opções abaixo para gerenciar:</p>
         <a href="{{ route('produtos.index') }}" class="btn btn-primary">Produtos</a>
         <a href="{{ route('clientes.index') }}" class="btn btn-success">Clientes</a>
-        <a href="{{ route('vendas.index') }}" class="btn btn-info">Vendas</a> <!-- Botão para acessar vendas -->
+        <a href="{{ route('vendas.index') }}" class="btn btn-info">Vendas</a>
+        <a href="{{ route('login') }}" class="btn btn-secondary">Sair</a> 
     </div>
 </body>
 </html>

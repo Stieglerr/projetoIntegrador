@@ -80,7 +80,7 @@
             font-weight: bold;
             margin-top: 20px;
             font-size: 1.2em;
-            text-align: right; /* Alinha a soma à direita */
+            text-align: right; 
         }
     </style>
 </head>
@@ -90,7 +90,6 @@
 
         <h1>Lista de Vendas</h1>
 
-        <!-- Cabeçalho das vendas -->
         <div class="header">
             <span style="flex: 2;">Cliente</span>
             <span style="flex: 1;">Data da Venda</span>
@@ -113,7 +112,6 @@
             @endforeach
         </ul>
 
-        <!-- Exibir a soma total das vendas -->
         <div class="total">
             Total de Vendas: R$ {{ number_format($vendas->sum('valor_total'), 2, ',', '.') }}
         </div>

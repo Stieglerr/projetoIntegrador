@@ -97,13 +97,12 @@
 
         <h1>Lista de Clientes</h1>
 
-        <!-- Cabeçalho dos clientes -->
         <div class="header">
             <span style="flex: 2;">Nome</span>
             <span style="flex: 1;">CPF</span>
             <span style="flex: 1;">Telefone</span>
             <span style="flex: 2;">Endereço</span>
-            <span style="flex: 2;">Email</span>  <!-- Nova coluna de Email -->
+            <span style="flex: 2;">Email</span> 
             <span style="flex: 1;">Ações</span>
         </div>
 
@@ -114,12 +113,10 @@
                     <span style="flex: 1;">{{ $cliente->cpf }}</span>
                     <span style="flex: 1;">{{ $cliente->telefone }}</span>
                     <span style="flex: 2;">{{ $cliente->endereco }}</span>
-                    <span style="flex: 2;">{{ $cliente->email }}</span>  <!-- Exibindo o Email -->
+                    <span style="flex: 2;">{{ $cliente->email }}</span> 
                     <div style="flex: 1; display: flex; justify-content: space-around;">
-                        <!-- Botão Editar -->
                         <a href="{{ route('clientes.edit', $cliente->id) }}" class="btn">Editar</a>
 
-                        <!-- Botão Remover -->
                         <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')

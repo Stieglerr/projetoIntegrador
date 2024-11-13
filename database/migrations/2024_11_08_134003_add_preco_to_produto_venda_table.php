@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('produto_venda', function (Blueprint $table) {
-            $table->decimal('preco', 8, 2)->nullable(); // Adiciona a coluna preco como opcional
+            $table->decimal('preco', 8, 2)->nullable(); 
         });
     }
 

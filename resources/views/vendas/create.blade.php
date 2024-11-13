@@ -210,7 +210,6 @@
                 produtoSelect.addEventListener('change', () => {
                     const selectedOption = produtoSelect.options[produtoSelect.selectedIndex];
                     const preco = selectedOption.getAttribute('data-preco');
-                    // Adicionar lógica para calcular o valor total da venda
                 });
             }
         </script>

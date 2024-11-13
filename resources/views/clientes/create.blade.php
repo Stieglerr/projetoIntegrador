@@ -93,18 +93,18 @@
     <script>
         function formatCPF(cpf) {
             cpf.value = cpf.value
-                .replace(/\D/g, '') // Remove tudo que não é dígito
-                .replace(/(\d{3})(\d)/, '$1.$2') // Adiciona ponto após os três primeiros dígitos
-                .replace(/(\d{3})(\d)/, '$1.$2') // Adiciona ponto após os próximos três dígitos
-                .replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Adiciona hífen antes dos dois últimos dígitos
+                .replace(/\D/g, '') 
+                .replace(/(\d{3})(\d)/, '$1.$2') 
+                .replace(/(\d{3})(\d)/, '$1.$2') 
+                .replace(/(\d{3})(\d{1,2})$/, '$1-$2'); 
         }
 
         function formatPhone(phone) {
             phone.value = phone.value
-                .replace(/\D/g, '') // Remove tudo que não é dígito
-                .replace(/(\d{2})(\d)/, '($1) $2') // Adiciona parênteses nos dois primeiros dígitos
-                .replace(/(\d{5})(\d)/, '$1-$2') // Adiciona hífen após os cinco primeiros dígitos
-                .replace(/(-\d{4})\d+?$/, '$1'); // Limita para quatro dígitos após o hífen
+                .replace(/\D/g, '') 
+                .replace(/(\d{2})(\d)/, '($1) $2') 
+                .replace(/(\d{5})(\d)/, '$1-$2')  
+                .replace(/(-\d{4})\d+?$/, '$1');
         }
     </script>
 </head>
